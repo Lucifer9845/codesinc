@@ -1,0 +1,166 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+
+int a[50];
+int n, val, i, pos;
+
+void create()
+{
+	printf("Enter the size of the array: \n");
+	scanf("%d", &n);
+	
+	printf("Enter the array elements: \n");
+	
+	for(i=0;i<n;i++)
+		scanf("%d", &a[i]);
+}
+
+void display()
+{
+	printf("The array elements are \n");
+	
+	for(i=0;i<n;i++)
+		printf("%d \t", a[i]);
+}
+
+void insert()
+{
+	printf("Enter the position of the new Elements \n");
+	scanf("%d", &pos);
+	
+	printf("Enter the element to be inserted: \t");
+	scanf("%d", &val);
+	
+	for(i=n; i>=pos; i--)
+	{
+		a[i+1] = a[i];
+	}
+	a[pos] = val;
+	
+	n++;
+}
+
+void Delete()
+{
+	printf("Enter the position of the element to be deleted \n");
+	scanf("%d", &pos);
+	
+	val = a[pos];
+	
+	for(i = pos; i<n; i++)
+	{
+		a[i] = a[i+1];
+		
+	}
+	
+	n--;
+	
+	printf("\n The deleted elements is = %d", val);
+}
+
+void Array()
+{
+	int choice;
+	while(1)
+	{
+		printf("Enter choice \n");
+		printf("\n 1.create \n 2. display \n 3. insert \n 4. delete \n 5. exit \n");
+		
+		scanf("%d", &choice);
+		
+		switch(choice)
+		{
+			case 1: create();
+					break;
+			case 2: display();
+					break;
+			case 3: insert();
+					break;
+			case 4: Delete();
+					break;
+			case 5: exit(0);
+					break;
+			default : printf("Wrong choice");
+					break;
+		}
+	}
+}
+
+void Stringr()
+{
+	char STR[100], PAT[100], REP[100], ans[100];
+	
+	int i, j, c, m, k, flag =0;
+	
+	printf("Enter the main string: \n");
+	gets(STR);
+	gets(STR);
+	printf("Enter the pattern \n");
+	gets(PAT);
+	gets(PAT);
+	printf("Enter the replace string \n");
+	gets(STR);
+	gets(STR);
+	i=j=m=c=0;
+	
+	while(STR[c] != '\0')
+	{
+		if(STR[m] == PAT[i])
+		{
+			i++;
+			m++;
+			if(PAT[i] == '\0')
+			{
+				for(k =0; REP[k] != '\0'; k++, j++)
+				{
+					ans[j] = REP[k];
+					flag = 1;
+				}
+				
+				i =0;
+				c = m;
+			}
+		}
+		
+		else
+		{
+			ans[j] = STR[c];
+			j++;
+			c++;
+			m = c;
+			i = 0;
+		}
+	}
+	
+	if(flag ==0)
+		printf("\npattern doesn't exist\n");
+	else
+	{
+		ans[j] = '\0';
+		printf(" \n resultant string is %s \n", ans);
+	}
+}
+
+
+
+int main()
+{   int choice;
+    printf("\nEnter choice:\n");
+    printf("1. Array \n2. String patter \n");
+    scanf("%d", &choice);
+    while(1)
+    {
+        switch(choice)
+        {
+            case 1 : Array();
+                    break;
+            case 2 : Stringr();
+                    break;
+            //case 3 : stack();
+              //      break;
+        }
+
+    }
+}
